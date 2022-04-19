@@ -57,7 +57,7 @@ def transfer_shares():
         driver.find_element(By.XPATH, '//a[contains(@href,"Employee/Login")]').click()
         wait.until(expected_conditions.presence_of_element_located((By.ID, "loginIDType")))
         print("Choose Username login option")
-        select = Select(driver.find_element_by_id("loginIDType"))
+        select = Select(driver.find_element(By.ID, "loginIDType"))
         select.select_by_visible_text("Username")
         print("Input credentials")
         # Saw a captcha during development and added wait times in. Not sure if they're needed though.
@@ -82,7 +82,7 @@ def transfer_shares():
 
         print("Select DTC")
         wait.until(expected_conditions.presence_of_element_located((By.ID, "BrokerCodeType")))
-        select = Select(driver.find_element_by_id("BrokerCodeType"))
+        select = Select(driver.find_element(By.ID, "BrokerCodeType"))
         select.select_by_value("D")
 
         print("Input broker DTC and account number")
@@ -90,6 +90,13 @@ def transfer_shares():
         driver.find_element(By.ID, "AccountNumber").send_keys(str(ACCOUNT_NUMBER))
 
         print("Click next button")
+        driver.find_element(By.ID, "cmdNext").click()
+
+        print("Input PIN again")
+        wait.until(expected_conditions.presence_of_element_located((By.ID, "PIN")))
+        driver.find_element(By.ID, "PIN").send_keys(str(PASSWORD))
+
+        print("Click submit")
         driver.find_element(By.ID, "cmdNext").click()
     except:
         # Need to add more specific exception catches
