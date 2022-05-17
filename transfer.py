@@ -9,11 +9,11 @@ import sys
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.common.exceptions import *
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 # Load env variables from ".env" file in the same folder
@@ -36,8 +36,11 @@ DTC = os.getenv("DTC")
 ACCOUNT_NUMBER = os.getenv("ACCOUNT_NUMBER")
 
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.headless = True
+
 # Automatically get and cache the webdriver for Chrome
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), chrome_options=chrome_options)
 
 
 # Function to transfer shares to another brokerage
