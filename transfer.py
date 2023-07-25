@@ -36,11 +36,11 @@ DTC = os.getenv("DTC")
 ACCOUNT_NUMBER = os.getenv("ACCOUNT_NUMBER")
 
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.headless = True
+options = webdriver.ChromeOptions()
+options.add_argument("--headless=new")
 
 # Automatically get and cache the webdriver for Chrome
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), chrome_options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 
 # Function to transfer shares to another brokerage
