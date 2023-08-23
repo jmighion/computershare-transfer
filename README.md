@@ -1,5 +1,5 @@
 # computershare-transfer
-Transfer or sell all ESPP shares from Computershare to another brokerage.
+Transfer or sell all ESPP shares from Computershare to another brokerage or account.
 
 ---
 
